@@ -31,6 +31,9 @@ class TestPlanComparator:
         assert self.comp.isAfter(Vector([0,2,3,6]))
         assert not self.comp.isAfter(Vector([0,0,-1,6]))
         
+    def test_disttoplan_should_return_the_distance_to_the_plan(self):
+        comp = PlanComparator(Vector([1,1]), Vector([0,1]))
+        assert comp.distToPlan(Vector([2,0])) == 1
 
 class TestKdTree:
     def setup(self):
@@ -46,4 +49,15 @@ class TestKdTree:
         self.tree.addElt(self.v1)
         self.tree.addElt(self.v2)
         #~ self.tree.addElt(self.v3)
-        assert self.v1 == self.tree.getNearest(self.v1)
+        assert self.v1 == self.tree.getNearest(self.v1)[0]
+    
+    def test_getNearest_should_return_the_closest_element_in_the_tree(self):
+        self.tree.addElt(self.v1)
+        self.tree.addElt(self.v2)
+        self.tree.addElt(self.v3)
+        assert self.v1 == self.tree.getNearest(Vector([1,8]))[0]
+        
+    
+    
+    
+    

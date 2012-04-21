@@ -21,9 +21,15 @@ class kdNode:
         
     def getNearest(self, elt):
         if self.isLeaf:
-            return self.value if self.value == elt else None
+            return (self.value, self.value.dist(elt))
         else:
-            return self.getChildren(elt).getNearest(elt)
+            (val, cost) = self.getChildren(elt).getNearest(elt)
+            if self.comparator.distToPlan(elt) < cost:
+                nexttree = self.children[1] if self.getChildren(elt)==self.children[0] else self.children[0]
+                (val2, cost2) = nexttree.getNearest(elt)
+                if cost2 <cost:
+                    (val,cost) = (val2, cost2)
+            return (val, cost)
             
     def getChildren(self, elt):
         return self.children[1] if self.comparator.isAfter(elt) else self.children[0]
