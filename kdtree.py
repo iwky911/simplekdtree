@@ -1,4 +1,4 @@
-from kdtree import *
+from kdnode import *
 from vector import *
 
 class kdTree:
@@ -8,7 +8,7 @@ class kdTree:
     
     def add(self, e):
         if self.root == None:
-            self.root = knNode(e)
+            self.root = kdNode(e)
         else:
             self.root.addElt(e)
     
