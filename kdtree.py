@@ -7,7 +7,7 @@ class kdTree:
         self.root = None
     
     def add(self, e):
-        if self.root = None:
+        if self.root == None:
             self.root = knNode(e)
         else:
             self.root.addElt(e)
